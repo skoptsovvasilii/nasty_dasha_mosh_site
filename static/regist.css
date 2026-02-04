@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacOS, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  color: #e0e0ff;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(25, 25, 45, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 48px 40px;
+  box-shadow: 0 22px 55px -18px rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: transform 0.35s ease;
+}
+
+.auth-container:hover {
+  transform: translateY(-10px);
+}
+
+h1 {
+  color: white;
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  text-align: center;
+  margin-bottom: 44px;
+  background: linear-gradient(90deg, #a78bfa, #7dd3fc, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input-group {
+  position: relative;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 16px 20px 16px 52px;
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  border-radius: 14px;
+  background: rgba(40, 40, 70, 0.65);
+  color: white;
+  font-size: 1.05rem;
+  transition: all 0.25s ease;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+input:focus {
+  outline: none;
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.22);
+  background: rgba(55, 55, 85, 0.85);
+}
+
+.input-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a78bfa;
+  font-size: 1.35rem;
+  pointer-events: none;
+  transition: color 0.25s ease;
+}
+
+input:focus + .input-icon {
+  color: #c4b5fd;
+}
+
+.btn {
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #7c3aed, #3b82f6);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #6d28d9, #2563eb);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -12px rgba(124, 58, 237, 0.55);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.error-message {
+  color: #f87171;
+  font-size: 0.98rem;
+  text-align: center;
+  margin-top: 12px;
+  background: rgba(248, 113, 113, 0.18);
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+}
+
+/* анимация появления */
+.auth-container {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
