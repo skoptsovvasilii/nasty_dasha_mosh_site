@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата питания</title>
+<link rel="stylesheet" href="/static/pay.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="header">
+    <form action="{{ url_for('index') }}">
+        <button type="submit" class="back-btn"><i class="fas fa-chevron-left"></i></button>
+    </form>
+    <h1>Закажи питание</h1>
+    <div style="width: 60px;"></div> <!-- placeholder для баланса/симметрии -->
+</div>
+
+<div class="container">
+    <div class="pricing-grid">
+        <!-- План 1 день -->
+        <div class="plan-card">
+            <h2>Один день</h2>
+            <div class="price">1 000 ₽</div>
+            <form method="post">
+                <button type="submit" name="like" value="Заказать" class="btn-order">Заказать</button>
+            </form>
+        </div>
+
+        <!-- План 1 неделя -->
+        <div class="plan-card">
+            <h2>Одна неделя</h2>
+            <div class="price">5 000 ₽</div>
+            <form method="post">
+                <button type="submit" name="like" value="Заказать " class="btn-order">Заказать</button>
+            </form>
+        </div>
+
+        <!-- План 1 месяц -->
+        <div class="plan-card">
+            <h2>Один месяц</h2>
+            <div class="price">15 000 ₽</div>
+            <form method="post">
+                <button type="submit" name="like" value=" Заказать" class="btn-order">Заказать</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="status-message">
+        Питание заказано до: {{ mes }}
+    </div>
+
+    <div class="custom-payment">
+        <h2>Пополнить баланс на любую сумму</h2>
+        <form class="custom-form" method="post">
+            <input type="number" name="total" placeholder="Сумма в рублях" min="1" required class="custom-input">
+            <button type="submit" class="custom-button">Пополнить баланс</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

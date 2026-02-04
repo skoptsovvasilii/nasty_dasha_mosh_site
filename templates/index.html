@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню столовой</title>
+<link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>Привет, {{ name }}!</h1>
+    <form method="post" action="{{ url_for('input_danes') }}">
+        <button type="submit" class="btn-logout">Выход</button>
+    </form>
+</div>
+
+<div class="container">
+    <div class="title-section">
+        <h1>Меню столовой</h1>
+        <div class="balance">{{ pay }}</div>
+    </div>
+
+    <div class="main-content">
+        <!-- Отзывы -->
+        <div class="card">
+            <h2>Отзывы</h2>
+            <p>Оставь отзыв о блюдах или почитай, что думают другие ученики</p>
+            <form action="{{ url_for('review') }}" method="get">
+                <button type="submit" class="btn btn-primary">Перейти к отзывам</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="navigation">
+                <form method="post">
+                    <button type="submit" class="btn-arrow" name="like" value="<"> < <i class="fas fa-chevron-left"></i></button>
+                </form>
+
+                <table class="menu-table">
+                    <thead>
+                        <tr>
+                            <th>День</th>
+                            <th>Завтрак</th>
+                            <th>Обед</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in br %}
+                        <tr>
+                            <td>{{ row[0] }}</td>
+                            <td>{{ row[1] }}</td>
+                            <td>{{ row[2] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <form method="post">
+                    <button type="submit" class="btn-arrow" name="like" value=">"> > <i class="fas fa-chevron-right"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Оплата -->
+        <div class="card">
+            <h2>Оплата питания</h2>
+            <p>Оплати разово или купи абонемент на месяц</p>
+            <form action="{{ url_for('pay') }}" method="post">
+                <button type="submit" class="btn btn-primary">Купить</button>
+            </form>
+        </div>
+    </div>
+
+    {% if eat is none %}
+    <div class="status-section">
+        <h1 class="status-message">Ты сегодня поел в столовой?</h1>
+        <div class="actions">
+            <form method="POST">
+                <button type="submit" class="btn-success" name="like" value="V">Да <i class="fas fa-check"></i></button>
+            </form>
+            <form method="POST">
+                <button type="submit" class="btn-danger" name="like" value="X">Нет <i class="fas fa-times"></i></button>
+            </form>
+            <div style="align-self: center;">
+                <h3 style="color: #c4b5fd; margin-bottom: 12px;">Аллергии / пожелания</h3>
+                <form method="post">
+                    <button type="submit" class="allergies-btn">Выбрать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if eat is not none %}
+    <div class="status-section">
+        <h1 class="status-message">{{ eat }}</h1>
+        <div class="actions" style="justify-content: center;">
+            <div>
+                <h3 style="color: #c4b5fd; margin-bottom: 12px;">Аллергии / пожелания</h3>
+                <form method="post" action="{{ url_for('check') }}">
+                    <button type="submit" class="allergies-btn">Выбрать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

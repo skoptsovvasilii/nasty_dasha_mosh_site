@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="/static/input_danes.css">
+    <!-- Font Awesome для иконок (можно убрать, если не нужен) -->
+</head>
+<body>
+
+<div class="auth-container">
+    <h1>Вход в систему</h1>
+
+    <form action="{{ url_for('input_danes') }}" method="post">
+        <div class="input-group">
+            <input type="text" name="email" placeholder="Электронная почта" required>
+            <i class="fas fa-envelope input-icon"></i>
+        </div>
+
+        <div class="input-group">
+            <input type="password" name="password" placeholder="Пароль" required>
+            <i class="fas fa-lock input-icon"></i>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Войти</button>
+
+        {% if error %}
+            <div class="error-message">{{ error }}</div>
+        {% endif %}
+    </form>
+
+    <form action="{{ url_for('regist') }}" style="margin-top: 24px;">
+        <button type="submit" class="btn btn-secondary">Создать аккаунт</button>
+    </form>
+</div>
+
+</body>
+</html>

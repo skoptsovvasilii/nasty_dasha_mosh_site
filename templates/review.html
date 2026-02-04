@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы</title>
+    <link rel="stylesheet" href="/static/review.css">
+
+</head>
+<body>
+
+<div class="header">
+    <form action="{{ url_for('index') }}" method="get">
+        <button type="submit" class="back-btn"><i class="fas fa-chevron-left"></i></button>
+    </form>
+    <h1>Оставь отзыв о блюдах</h1>
+    <div style="width: 60px;"></div> <!-- для симметрии -->
+</div>
+
+<div class="container">
+    <div class="review-form">
+        <form method="POST">
+            <textarea name="comment" placeholder="Напишите ваш комментарий здесь..." required></textarea>
+            <button type="submit" class="btn-submit" name="like" value="Отправить">Отправить отзыв</button>
+        </form>
+    </div>
+
+    <div class="reviews-section">
+        <h2>Отзывы других учеников</h2>
+        <div class="review-list">
+            {% for row in lst %}
+            <div class="review-card">
+                <p>{{ row }}</p>
+                <!-- Если в будущем добавишь дату/имя пользователя, можно вывести здесь -->
+                <!-- <small>— {{ row.username }}, {{ row.date }}</small> -->
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

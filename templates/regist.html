@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="/static/regist.css">
+    <!-- Font Awesome для иконок -->
+</head>
+<body>
+
+<div class="auth-container">
+    <h1>Создать аккаунт</h1>
+
+    <form action="{{ url_for('regist') }}" method="post">
+        <div class="input-group">
+            <input type="text" name="name" placeholder="Имя" required>
+            <i class="fas fa-user input-icon"></i>
+        </div>
+
+        <div class="input-group">
+            <input type="text" name="text" placeholder="Фамилия" required>
+            <i class="fas fa-user input-icon"></i>
+        </div>
+
+        <div class="input-group">
+            <input type="text" name="text" placeholder="Отчество">
+            <i class="fas fa-user-tie input-icon"></i>
+        </div>
+
+        <div class="input-group">
+            <input type="text" name="email" placeholder="Электронная почта" required>
+            <i class="fas fa-envelope input-icon"></i>
+        </div>
+
+        <div class="input-group">
+            <input type="password" name="password" placeholder="Пароль" required>
+            <i class="fas fa-lock input-icon"></i>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+
+        {% if error %}
+            <div class="error-message">{{ error }}</div>
+        {% endif %}
+    </form>
+</div>
+
+</body>
+</html>

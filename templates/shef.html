@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель шеф-повара</title>
+    <link rel="stylesheet" href="/static/shef.css">
+</head>
+<body>
+
+<div class="header">
+    <form method="post" action="{{ url_for('input_danes') }}">
+        <button type="submit" class="back-btn"><i class="fas fa-sign-out-alt"></i></button>
+    </form>
+    <h1>Здравствуй, шеф!</h1>
+    <div style="width: 60px;"></div>
+</div>
+
+<div class="container">
+    <form method="post" class="search-form">
+        <input type="search" name="name"  placeholder="Введи фамилию ученика" class="search-input" required>
+        <button type="submit" class="btn-search" value="Поиск" name="like">Поиск</button>
+    </form>
+
+    {% if flag == 1 %}
+    <div class="status-section">
+        <h2 class="status-question">{{ full_name }} сегодня получил еду?</h2>
+        <div class="confirm-actions">
+            <form method="POST">
+                <button type="submit" name="like" value="V" class="btn-confirm btn-yes">V</button>
+            </form>
+            <form method="POST">
+                <button type="submit" name="like" value="X" class="btn-confirm btn-no">X</button>
+            </form>
+        </div>
+    </div>
+    {% elif flag == 123 %}
+    <div class="status-section">
+        <h2 class="status-question">{{ mes }}</h2>
+    </div>
+    {% endif %}
+
+    <div class="stock-info">
+        <h2>Готовых блюд осталось</h2>
+        <div class="count">{{ cn }}</div>
+    </div>
+
+    <div class="order-section">
+        <h2>Заказать продукты</h2>
+        <form method="POST">
+            <div class="products-grid">
+                <div class="product-item">
+                    <h3>Морковь</h3>
+                    <input type="number" name="curret" placeholder="кг" min="0">
+                </div>
+                <div class="product-item">
+                    <h3>Картошка</h3>
+                    <input type="number" name="pottat" placeholder="кг" min="0">
+                </div>
+                <div class="product-item">
+                    <h3>Яблоко</h3>
+                    <input type="number" name="apple" placeholder="кг" min="0">
+                </div>
+                <div class="product-item">
+                    <h3>Мясо</h3>
+                    <input type="number" name="meat" placeholder="кг" min="0">
+                </div>
+                <div class="product-item">
+                    <h3>Рыба</h3>
+                    <input type="number" name="fish" placeholder="кг" min="0">
+                </div>
+                <div class="product-item">
+                    <h3>Лук</h3>
+                    <input type="number" name="ion" placeholder="кг" min="0">
+                </div>
+                <div class="product-item">
+                    <h3>Помидор</h3>
+                    <input type="number" name="tomate" placeholder="кг" min="0">
+                </div>
+                <div class="product-item">
+                    <h3>Курица</h3>
+                    <input type="number" name="check" placeholder="кг" min="0">
+                </div>
+                <div class="product-item">
+                    <h3>Огурец</h3>
+                    <input type="number" name="cucamber" placeholder="кг" min="0">
+                </div>
+                <div class="product-item">
+                    <h3>Груша</h3>
+                    <input type="number" name="cirle_app" placeholder="кг" min="0">
+                </div>
+            </div>
+
+            <button type="submit" name="like" value="order" class="btn-submit-order">Заказать продукты</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

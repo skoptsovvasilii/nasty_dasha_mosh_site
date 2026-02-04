@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель администратора</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_style.css') }}">
+</head>
+<body>
+
+<div class="header">
+    <h1>Панель админа</h1>
+    <form method="post" action="{{ url_for('input_danes') }}">
+        <button type="submit" name="like" value="выход" class="btn-logout">Выход</button>
+    </form>
+</div>
+
+<div class="container">
+
+    <div class="title-section">
+        <h1>Статистика столовой</h1>
+    </div>
+
+    <div class="main-content">
+
+        <!-- Статистика -->
+        <div class="card">
+            <h2>Сравнение месяцев</h2>
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Месяц назад</th>
+                        <th>Этот месяц</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Пропущено</td>  <td>{{ zl }}</td> <td>{{ z }}</td></tr>
+                    <tr><td>Посещено</td>   <td>{{ gol }}</td><td>{{ go }}</td></tr>
+                    <tr><td>Сумма</td>      <td>{{ pa }}</td> <td>{{ pays }}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Заявка на закупку -->
+        {% if fl %}
+        <div class="card highlight">
+            <h2>Заявка от повара</h2>
+            <div class="purchase-list">
+                {% for row in lst %}
+                    <div class="purchase-item">{{ row[0] }} — {{ row[1] }} кг</div>
+                {% endfor %}
+            </div>
+            <div class="decision-buttons">
+                <form method="post">
+                    <button type="submit" name="like" value="Согласовать"    class="btn btn-success">Согласовать</button>
+                    <button type="submit" name="like" value="Не согласовать" class="btn btn-danger">Отклонить</button>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Формирование отчёта -->
+        <div class="card full-width">
+            <h2>Создать отчёт за месяц</h2>
+            <form method="post" class="report-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Посетило завтрак</label>
+                        <input type="number" name="breakfast_attended" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Посетило обед</label>
+                        <input type="number" name="lunch_attended" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Пропущено завтрак</label>
+                        <input type="number" name="breakfast_missed" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Пропущено обед</label>
+                        <input type="number" name="lunch_missed" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Прибыль</label>
+                        <input type="number" name="profit" step="0.01" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Затраты</label>
+                        <input type="number" name="costs" step="0.01" min="0">
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Заказано продуктов (пример: курица — 8 кг; рис — 15 кг; ...)</label>
+                        <textarea name="products_ordered" rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Приготовлено завтраков</label>
+                        <input type="number" name="breakfast_prepared" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Приготовлено обедов</label>
+                        <input type="number" name="lunch_prepared" min="0">
+                    </div>
+                </div>
+
+                <button type="submit" name="like" value="Отправить" class="btn btn-primary submit-btn">Отправить отчёт</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

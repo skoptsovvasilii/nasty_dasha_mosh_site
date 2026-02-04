@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аллергии и предпочтения</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='check_style.css') }}">
+</head>
+<body>
+
+<div class="header">
+    <form action="{{ url_for('index') }}" method="get">
+        <button type="submit" class="btn-back">← Назад</button>
+    </form>
+    <h1>Аллергии и пожелания</h1>
+</div>
+
+<div class="container">
+
+    <div class="card full-width">
+        <form method="post" action="{{ url_for('check') }}" class="preferences-form">
+
+            <div class="two-columns">
+
+                <!-- Аллергии / нельзя -->
+                <div class="section allergy-section">
+                    <h2>Аллергия / нельзя есть</h2>
+                    <div class="options-grid">
+                        <label class="option">
+                            <input type="checkbox" name="allergy" value="fish"  {% if 'fish'  in allergies_list %}checked{% endif %}>
+                            <span>Рыба</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="allergy" value="chic"  {% if 'chic'  in allergies_list %}checked{% endif %}>
+                            <span>Курица</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="allergy" value="meat"  {% if 'meat'  in allergies_list %}checked{% endif %}>
+                            <span>Мясо (говядина, свинина…)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="allergy" value="milk"  {% if 'milk'  in allergies_list %}checked{% endif %}>
+                            <span>Молоко / молочные продукты</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="allergy" value="citr"  {% if 'citr'  in allergies_list %}checked{% endif %}>
+                            <span>Цитрусовые</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="allergy" value="saxa"  {% if 'saxa'  in allergies_list %}checked{% endif %}>
+                            <span>Сахар / сладкое</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Предпочтения / хочу -->
+                <div class="section preference-section">
+                    <h2>Хочу / люблю</h2>
+                    <div class="options-grid">
+                        <label class="option">
+                            <input type="checkbox" name="preference" value="fish"  {% if 'fish' in preferences_list %}checked{% endif %}>
+                            <span>Рыба</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="preference" value="chic"  {% if 'chic' in preferences_list %}checked{% endif %}>
+                            <span>Курица</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="preference" value="meat"  {% if 'meat' in preferences_list %}checked{% endif %}>
+                            <span>Мясо</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="preference" value="milk"  {% if 'milk' in preferences_list %}checked{% endif %}>
+                            <span>Молочные продукты</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="preference" value="citr"  {% if 'citr' in preferences_list %}checked{% endif %}>
+                            <span>Цитрусовые</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="preference" value="saxa"  {% if 'saxa' in preferences_list %}checked{% endif %}>
+                            <span>Сладкое / сахар</span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Результат / подсказка -->
+            {% if result_text %}
+            <div class="result-panel">
+                <div class="result-text">{{ result_text | safe }}</div>
+            </div>
+            {% endif %}
+
+            <div class="form-submit">
+                <button type="submit" class="btn btn-primary submit-btn">Сохранить</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
